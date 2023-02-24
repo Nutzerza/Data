@@ -137,7 +137,7 @@ myBST.insert(1)
 # myBST.traverse()
 myBST.delete(101)
 myBST.traverse()
-
+# 10 5 8 Error
 # myBST.insert()
 
 # print()
