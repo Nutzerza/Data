@@ -1,0 +1,10 @@
+from BST import *
+myBST = BST()
+myBST.insert(101)
+myBST.insert(10)
+myBST.insert(200)
+myBST.insert(100)
+myBST.insert(1)
+# myBST.traverse()
+myBST.delete(101)
+myBST.traverse()
