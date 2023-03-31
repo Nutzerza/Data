@@ -9,10 +9,10 @@ class ProbHash:
         return True if self.hashtable[hashkey] != None else False
     def insertData(self, student_obj):
         canInsert = True
-        check = student_obj.getId()%self.n
+        check = student_obj.getId()%self.n #hash
         fir = check
         if self.hashFunction(check):
-            while self.rehashFunction(check):
+            while self.rehashFunction(check): #rehash
                 check = check+1
                 if check == self.n:
                     check = 0
