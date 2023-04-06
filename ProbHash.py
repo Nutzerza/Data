@@ -1,30 +1,43 @@
-from Student import Student
+
 class ProbHash:
     def __init__(self, cap):
-        self.hashtable = cap*[None]
+        self.hashTable = cap*[None]
         self.n = cap
     def hashFunction(self, mykey):
-        pos = mykey%self.n
-        if self.hashtable[pos] == None:
-            return pos
+        return mykey%self.n
+    def rehashFunction(self, hashKey):
+        return hashKey + 1
+    def insertData(self, studentOBJ):
+        idStu = studentOBJ.getId()
+        hashKey = self.hashFunction(idStu)
+        count = 0
+        if self.hashTable[hashKey]:
+            while self.hashTable[hashKey]:
+                hashKey = self.rehashFunction(hashKey)
+                if count == self.n:
+                    print(idStu, "can't insert.")
+                    return
+            self.hashTable[hashKey] = studentOBJ
         else:
-            return self.hashtable[pos]
-    def rehashFunction(self, hashkey):
-        num = 0
-        while type(self.hashFunction(hashkey)) != int:
-            hashkey += 1
-            num += 1
-            if num == self.n:
-                return False
-        return hashkey%self.n
-    def insertData(self, student_obj):
-        id = student_obj.getId()
-        pos = self.rehashFunction(id)
-        if pos!=False:
-            self.hashtable[pos] = student_obj
-            print("Insert", student_obj.getId(), "at index", pos)
-        else:
-            print("Can't not insert", student_obj.getId())
+            self.hashTable[hashKey] = studentOBJ
+        print("Insert", idStu, "at index", hashKey)
     def searchData(self, key):
-        pos = self.rehashFunction(key)
-        return self.hashtable[pos]
+        hashKey = self.hashFunction(key)
+        check = False
+        count = 0
+        if self.hashTable[hashKey] == None:
+            check = True
+        elif self.hashTable[hashKey].getId() != key:
+            while self.hashTable[hashKey].getId() != key:
+                hashKey = self.rehashFunction(hashKey)
+                if self.hashTable[hashKey] == None and count == self.n:
+                    check = True
+                    break
+                count += 1
+        if check:
+            print(key, "does not exist.")
+            return None
+        else:
+            std = self.hashTable[hashKey]
+            print("Found", key, "at index", hashKey)
+            return std

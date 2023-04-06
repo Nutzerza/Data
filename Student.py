@@ -10,4 +10,4 @@ class Student:
     def getGpa(self):
         return self.gpa
     def printDetail(self):
-        print("ID: ", self.id, "\nName: ", self.name, "\nGPA: ", self.gpa)
+        print("ID:", self.id, "\nName:", self.name, "\nGPA:", self.gpa)
