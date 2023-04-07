@@ -17,6 +17,7 @@ class ProbHash:
                 if count == self.n:
                     print(idStu, "can't insert.")
                     return
+                count += 1
             self.hashTable[hashKey] = studentOBJ
         else:
             self.hashTable[hashKey] = studentOBJ
@@ -30,7 +31,7 @@ class ProbHash:
         elif self.hashTable[hashKey].getId() != key:
             while self.hashTable[hashKey].getId() != key:
                 hashKey = self.rehashFunction(hashKey)
-                if self.hashTable[hashKey] == None and count == self.n:
+                if self.hashTable[hashKey] == None or count == self.n:
                     check = True
                     break
                 count += 1
