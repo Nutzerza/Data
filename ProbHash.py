@@ -14,6 +14,8 @@ class ProbHash:
         if self.hashTable[hashKey]:
             while self.hashTable[hashKey]:
                 hashKey = self.rehashFunction(hashKey)
+                if hashKey == self.n:
+                    hashKey = 0
                 if count == self.n:
                     print(idStu, "can't insert.")
                     return
@@ -31,6 +33,8 @@ class ProbHash:
         elif self.hashTable[hashKey].getId() != key:
             while self.hashTable[hashKey].getId() != key:
                 hashKey = self.rehashFunction(hashKey)
+                if hashKey == self.n:
+                    hashKey = 0
                 if self.hashTable[hashKey] == None or count == self.n:
                     check = True
                     break
